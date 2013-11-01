@@ -54,3 +54,4 @@ def gen_preds(init_idx, end_idx, M = 1500, d = 3, k = 1, data = pru, pred = Fals
         vT = [y[j + d + Tk - 2] for j in range(M)] 
         a = vT * np.linalg.pinv(W.T)
         return a, W
+

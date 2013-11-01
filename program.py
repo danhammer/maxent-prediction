@@ -11,7 +11,7 @@ prediction_mat = a * W.T
 prediction = list(itertools.chain(*prediction_mat.tolist()))
 
 y = utils.pru[training_start:training_end]
-plt.plot(y)
+plt.plot(y[0:1500])
 plt.plot(prediction)
 plt.show()
 
