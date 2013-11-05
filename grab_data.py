@@ -6,6 +6,8 @@ import datetime
 import matplotlib.pyplot as plt
 
 def grab_series(series_id = "DJIA", start = "1970-01-01"):
+    # Accepts a series ID and the start date and returns a pandas data
+    # frame of the results
     base = "http://api.stlouisfed.org/fred/series/observations"
     series = "?series_id=%s" % series_id
     api_key = "&api_key=%s" % os.environ["FED_API_KEY"]
@@ -34,6 +36,9 @@ def plot_series(series_id = "UNRATENSA"):
     return data
 
 def search_fred(*terms):
+    # Accepts a variable number of string search terms and returns an
+    # array of dictionaries with the ID, title, and frequency of the
+    # returned results.
     base = "http://api.stlouisfed.org/fred/series/search"
     search = "?search_text=%s" % "+".join(terms)
     api_key = "&api_key=%s" % os.environ["FED_API_KEY"]
@@ -47,6 +52,8 @@ def search_fred(*terms):
     return map(_process, obs['seriess'])
 
 def print_search(n = 10, *terms):
+    # Accepts a number of search results to return and the string
+    # search terms, and prints them in a readable form.
     res = search_fred(*terms)
     for x in res[0:n]:
         print "%s: %s (%s)" %(x['id'], x['title'], x['freq'])
